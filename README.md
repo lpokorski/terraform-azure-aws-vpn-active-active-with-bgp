@@ -80,7 +80,7 @@ Below table represents terraform input variables
 | bgp_apipa_cidr_3| BGP APIPA CIDR 3 - AWS Tunnel 1 to Azure Instance 1| `string` | `169.254.21.4/30`| yes|
 | bgp_apipa_cidr_4| BGP APIPA CIDR 4 - AWS Tunnel 2 to Azure Instance 1| `string` | `169.254.22.4/30`| yes|
 | ipsec_policy| IPSEC Protocols| `object`(<br>{ </br> dh_group = string </br> ike_encryption = string</br> ike_integrity = string</br>  ipsec_encryption = string</br> ipsec_integrity = string</br>pfs_group = string</br>sa_datasize = string</br>sa_lifetime = string</br> }</br>`)` | dh_group = "ECP384" </br> ike_encryption = "GCMAES256"</br> ike_integrity = "SHA384"</br>  ipsec_encryption = "GCMAES256"</br> ipsec_integrity = "GCMAES256"</br>pfs_group = "SHA384"</br>sa_datasize = "102400000"</br>sa_lifetime = "27000"</br>| yes|
-
+| ssh_public_key| SSH Public Key for Testing VMs | `string` | none | yes|
 ## Outputs
 Below table represents terraform output variables.
 
