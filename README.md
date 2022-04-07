@@ -65,7 +65,7 @@ Below table represents terraform input variables
 |------|-------------|------|---------|:--------:|
 | azure_tenant | ID of Azure Tenant. | `string` | none | yes|
 | azure_subscription| ID of Azure Subscription. | `string` | none | yes|
-| azure_location | ID of Azure Location | `string` | none | yes|
+| azure_location | ID of Azure Location | `string` | `eastus` | yes|
 | azure_vnet_prefix | IP Prefix for Azure VNET1 | `list(string)` | `10.1.0.0/16` | yes|
 | azure_gateway_subnet_prefix | Azure Subnet GatewaySubnet IP Prefix| `list(string)` | `10.1.0.0/24` | yes|
 | azure_vm_subnet_prefix| Azure Test VM Subnet IP Prefix | `list(string)` | `10.1.100.0/24` | yes|
@@ -207,6 +207,14 @@ resource "aws_security_group" "vpn-test-sg" {
     Name = "vpn-test-sg"
   }
 }
+```
+
+## Usage
+To run this example you need to execute:
+```hcl 
+$ terraform init
+$ terraform plan
+$ terraform apply
 ```
 ## Requirements
 
