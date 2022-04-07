@@ -82,6 +82,18 @@ Below table represents terraform input variables
 | ipsec_policy| IPSEC Protocols| `object`(<br>{ </br> dh_group = string </br> ike_encryption = string</br> ike_integrity = string</br>  ipsec_encryption = string</br> ipsec_integrity = string</br>pfs_group = string</br>sa_datasize = string</br>sa_lifetime = string</br> }</br>`)` | dh_group = "ECP384" </br> ike_encryption = "GCMAES256"</br> ike_integrity = "SHA384"</br>  ipsec_encryption = "GCMAES256"</br> ipsec_integrity = "GCMAES256"</br>pfs_group = "SHA384"</br>sa_datasize = "102400000"</br>sa_lifetime = "27000"</br>| yes|
 
 ## Outputs
+Below table represents terraform output variables.
+
+| Name | Description | 
+|------|:--------:|
+| AzureInstance0_IP | Azure Network Gateway Instance0 Public IP |
+| AzureInstance1_IP | Azure Network Gateway Instance1 Public IP |
+| ToAzureInstance0_Tunnel1_IP | AWS To AzureInstance0 Tunnel 1 Outside IP address |
+| ToAzureInstance0_Tunnel2_IP | AWS To AzureInstance0 Tunnel 2 Outside IP address |
+| ToAzureInstance1_Tunnel1_IP | AWS To AzureInstance1 Tunnel 1 Outside IP address |
+| ToAzureInstance1_Tunnel2_IP | AWS To AzureInstance1 Tunnel 2 Outside IP address |
+| My_Public_IP | Terraform deployment Public IP |
+
 
 ## VPN Site-to-Site pre-shared keys
 Terraform generates VPN connections pre-shared keys on the fly by using terraform [random_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) resources.
