@@ -1,5 +1,5 @@
-azure_location        = 
-azure_tenant          = 
-azure_subscription    = 
-aws_region            = 
-ssh_public_key        = 
+azure_location        = "eastus"
+azure_tenant          = "1dfd8600-97de-4250-8886-f30a219194cf"
+azure_subscription    = "86b61252-9a24-4154-b3a0-c029ad94626e"
+aws_region            = "eu-west-1"
+ssh_public_key       = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqMxBfRfG5MPB4clui4OnLzQ2RUWbe6BDGyAAfK3FYpk/T1/+UHVWYw/F9QmHD20P13jISLZeUxARkReEVDHAkMDcSCmDJ1aJx1/U0u/KnEfZT2d/xh6yhdmiqAU+f5u3iOeyKatn+Kc/OMghQq1pWR9pMtLXsBqAhgexPf9ouPGgKblTSYuLDpIXPlC2x4fyuKQ8d5/YKZKdfkevvlZpPfe88lCkAes7/6XRBZWpx2F3eXM0uZBDCZ0Bno2iqLkBMWJiuVFKa0XtbFsAWfwZ0eWqN9F8e/Co/TeOg+lIVaQa0p9DTL0iwuYmon7RNVIhLSs3OWLcgquPmnPVQ381J"
