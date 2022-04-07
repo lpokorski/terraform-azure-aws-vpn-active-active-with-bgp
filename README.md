@@ -1,15 +1,17 @@
 # terraform-azure-aws-vpn-active-active-with-bgp
 
 ## Introduction 
-These terrafrom scripts deploy full mesh Site to Site IPSEC VPN between Azure and AWS Cloud.
-For detailed information refer to [Azure Documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-aws-bgp)
+These terrafrom scripts deploy full mesh Site to Site IPSEC VPN with BGP between Azure and AWS Cloud.<br>
+For detailed information refer to [Azure Documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-aws-bgp) <br>
+
+In addition terraform scripts deploy also Virtual Machines (one on Azure Site and one on AWS site) which could be used for connectivity testing over VPN connections.  
 
 <img src="https://docs.microsoft.com/en-us/azure/vpn-gateway/media/vpn-gateway-howto-aws-bgp/architecture.png?raw=true" width="800" height="600">
 
 ## Resources
 ### Azure Resources
 
-Below Table represents resources which terraform creates in Azure
+Below table represents resources which terraform creates in Azure Cloud
 
 
 | Type | Name| Description| TF file|
@@ -37,9 +39,26 @@ Below Table represents resources which terraform creates in Azure
 
 ### AWS Resources
 
+Below table represents resources which terraform creates in AWS Cloud.
 
+| Type | Name| Description| TF file|
+|------|------|------|:--------:|
+| [AWS VPC](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | VPC1 | AWS VPC| [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|ski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/vm-test-azure.tf)|
+| [AWS Internet Gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) | ig-test-aws-vm|AWS Internet Gateway in VPC1 - Needed by AWS testing VM|  [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|
+| [AWS Route Table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | vpn-route-table|Route Table in VPC1 |  [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|
+| [AWS VPC Subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | vpn-subnet| Subnet in VPC1 for placing AWS testing VM | [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|
+| [AWS VPN Gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_gateway) | vpn-gw|AWS VPN Gateway|  [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|
+| [AWS Customer Gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/customer_gateway) |ToAzureInstance0| AWS Customer Gateway represenmting Azure VPN Instance0|  [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|
+| [AWS Customer Gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/customer_gateway) | ToAzureInstance1| AWS Customer Gateway represenmting Azure VPN Instance1| [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|
+| [AWS VPN Connection](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_connection) | ToAzureInstance0| AWS VPN Connection to Azure VPN Instance0| [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|
+| [AWS VPN Connection](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_connection) | ToAzureInstance1| AWS VPN Connection to Azure VPN Instance1| [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/s2s-vpn-aws.tf)|
+| [AWS Network Interface](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_interface) | nic-test-aws-vm| Network Interface for AWS Test VM| [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/vm-test-aws.tf)|
+| [AWS Security Group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | vpn-test-sg| Network Security Group for AWS Test VM| [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/vm-test-aws.tf))|
+| [AWS SSH Key Pair](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | vpn-test-key-pair| SSH Key Pair for AWS Test VM | [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/vm-test-aws.tf))|
+| [AWS EC2 Instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | vpn-test-aws-vm | AWS Test VM Instance | [s2s-vpn-aws.tf](https://github.com/lpokorski/terraform-azure-aws-vpn-active-active-with-bgp/blob/main/vm-test-aws.tf))|
 
 ## Inputs
+Below table represents terraform input variables
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
