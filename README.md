@@ -69,7 +69,7 @@ Below table represents terraform input variables
 | azure_vnet_prefix | IP Prefix for Azure VNET1 | `list(string)` | `10.1.0.0/16` | yes|
 | azure_gateway_subnet_prefix | Azure Subnet GatewaySubnet IP Prefix| `list(string)` | `10.1.0.0/24` | yes|
 | azure_vm_subnet_prefix| Azure Test VM Subnet IP Prefix | `list(string)` | `10.1.100.0/24` | yes|
-| azure_vpn_gateway_sku| Azure Network Gateway SKU | `string` | `VpnGw1AZ`| yes|
+| azure_vpn_gateway_sku| Azure Network Gateway SKU | `string` | `VpnGw1`| yes|
 | azure_vpn_gateway_asn| Azure Network Gateway BGP ASN | `string` | `65515`| yes|
 | aws_region| AWS Region where AWS resources will be deployed| `string` | `eu-west-1`| yes|
 | azure_vnet_prefix | AWS VPC1 prefix | `list(string)` | `10.2.0.0/16` | yes|
