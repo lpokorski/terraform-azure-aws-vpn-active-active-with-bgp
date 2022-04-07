@@ -92,6 +92,11 @@ Below table represents terraform output variables.
 | ToAzureInstance0_Tunnel2_IP | AWS To AzureInstance0 Tunnel 2 Outside IP address |
 | ToAzureInstance1_Tunnel1_IP | AWS To AzureInstance1 Tunnel 1 Outside IP address |
 | ToAzureInstance1_Tunnel2_IP | AWS To AzureInstance1 Tunnel 2 Outside IP address |
+| ToAzureInstance1_Tunnel2_IP | AWS To AzureInstance1 Tunnel 2 Outside IP address |
+| Azure_Test_VM_Public_IP| Azure Test VM Public IP |
+| Azure_Test_VM_Private_IP| Azure Test VM Private IP |
+| AWS_Test_VM_Public_IP| AWS Test VM Public IP |
+| AWS_Test_VM_Private_IP| AWS Test VM Private IP |
 | My_Public_IP | Terraform deployment Public IP |
 
 
