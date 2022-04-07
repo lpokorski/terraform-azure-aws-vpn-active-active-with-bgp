@@ -261,3 +261,12 @@ $ terraform apply
 No modules.
 
 ## Limitation
+Terraform azurerm does not yet support enabling Custom BGP Addresses for Azure connections. Please refer to https://github.com/hashicorp/terraform-provider-azurerm/issues/15854
+
+Without changing Custom BGP Addresses for Azure connections BGP routes are properly advertised through AWSTunnel1ToInstance0 and AWSTunnel1ToInstance1 but tunnels AWSTunnel2ToInstance0 and AWSTunnel2ToInstance1 advertise wrong APIPA address.
+
+To have all tunnels properly advertise routes there need to be changed Custom BGP Addresses for AWSTunnel2ToInstance0 and AWSTunnel2ToInstance1. 
+- `AWSTunnel2ToInstance0` -> Primary Custom BGP Address change to `169.254.22.2`
+- `AWSTunnel2ToInstance1` -> Secondary Custom BGP Address change to `169.254.22.6`
+
+
