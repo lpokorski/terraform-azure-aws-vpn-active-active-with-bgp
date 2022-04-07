@@ -4,6 +4,8 @@
 These terrafrom scripts deploy full mesh Site to Site IPSEC VPN between Azure and AWS Cloud.
 For detailed information refer to [Azure Documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-aws-bgp)
 
+<img src="https://docs.microsoft.com/en-us/azure/vpn-gateway/media/vpn-gateway-howto-aws-bgp/architecture.png?raw=true" width="800" height="600">
+
 ## Resources
 ### Azure Resources
 
