@@ -84,6 +84,7 @@ Below table represents terraform input variables
 ## Outputs
 
 ## Testing Virtual Machines
+Terraform scripts deploy Virtual Machines (one on Azure Site and one on AWS site) which could be used for connectivity testing over VPN connections.
 
 ### SSH Public Key
 Each of testing Virtual Machine requires to use ssh keys for SSH connection. Before deploying terrform scripts include your public ssh key into terraform variable "ssh_publiv_key".
