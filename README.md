@@ -226,3 +226,5 @@ resource "aws_security_group" "vpn-test-sg" {
 ## Modules
 
 No modules.
+
+## Limitation
