@@ -1,6 +1,6 @@
 # terraform-azure-aws-vpn-active-active-with-bgp
 
-### Introduction 
+# Introduction 
 These terrafrom scripts deploy full mesh Site to Site IPSEC VPN between Azure and AWS Cloud.
 For detailed information refer to [Azure Documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-aws-bgp)
 

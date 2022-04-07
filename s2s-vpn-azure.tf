@@ -23,7 +23,6 @@ resource "azurerm_public_ip" "VNet1GWpip" {
   resource_group_name = azurerm_resource_group.vpn-rg.name
   allocation_method   = "Static"
   sku                 = "Standard"
-  zones               = var.azure_zones
 }
 
 resource "azurerm_public_ip" "VNet1GWpip2" {
@@ -32,7 +31,6 @@ resource "azurerm_public_ip" "VNet1GWpip2" {
   resource_group_name = azurerm_resource_group.vpn-rg.name
   allocation_method   = "Static"
   sku                 = "Standard"
-  zones               = var.azure_zones
 
 }
 
@@ -268,10 +266,10 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel2ToInstance1" {
 
 output "AzureInstance0_IP" {
   description = "Azure Network Gateway Instance0 Public IP"
-  value = azurerm_public_ip.VNet1GWpip.ip_address
+  value       = azurerm_public_ip.VNet1GWpip.ip_address
 }
 
 output "AzureInstance1_IP" {
   description = "Azure Network Gateway Instance0 Public IP"
-  value = azurerm_public_ip.VNet1GWpip2.ip_address
+  value       = azurerm_public_ip.VNet1GWpip2.ip_address
 }

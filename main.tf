@@ -72,6 +72,6 @@ data "http" "source_ip" {
 
 output "My_Public_IP" {
   description = "My Pubic IP"
-  value ="${data.http.source_ip.body}/32"
+  value       = "${data.http.source_ip.body}/32"
 }
 

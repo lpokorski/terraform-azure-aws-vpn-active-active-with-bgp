@@ -99,9 +99,9 @@ resource "azurerm_linux_virtual_machine" "vpn-test-azure-vm" {
     azurerm_network_interface.nic-test-azure-vm.id,
   ]
 
- admin_ssh_key {
+  admin_ssh_key {
     username   = "ubuntu"
-    public_key = file("./ssh-keys/sshkey.pub")
+    public_key = var.ssh_public_key
   }
 
 
@@ -122,12 +122,12 @@ resource "azurerm_linux_virtual_machine" "vpn-test-azure-vm" {
 
 output "Azure_Test_VM_Public_IP" {
   description = "Azure Test VM Public IP"
-  value = azurerm_public_ip.pip-test-azure-vm.ip_address
+  value       = azurerm_public_ip.pip-test-azure-vm.ip_address
 }
 
 output "Azure_Test_VM_Private_IP" {
   description = "Azure Test VM Private IP"
-  value = azurerm_linux_virtual_machine.vpn-test-azure-vm.private_ip_address
+  value       = azurerm_linux_virtual_machine.vpn-test-azure-vm.private_ip_address
 }
 
 

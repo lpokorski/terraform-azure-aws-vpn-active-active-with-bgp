@@ -2,25 +2,17 @@
 variable "azure_tenant" {
   description = "Azure Tenant"
   type        = string
-  default     = "1dfd8600-97de-4250-8886-f30a219194cf"
 }
 
 variable "azure_subscription" {
   description = "Azure subscription"
   type        = string
-  default     = "86b61252-9a24-4154-b3a0-c029ad94626e"
 }
 
 variable "azure_location" {
   description = "Deployment Prefix"
   type        = string
   default     = "eastus"
-}
-
-variable "azure_zones" {
-  description = "Azure Deployment Zones"
-  type        = list(any)
-  default     = ["1", "2", "3"]
 }
 
 variable "azure_vnet_prefix" {
@@ -44,7 +36,7 @@ variable "azure_vm_subnet_prefix" {
 variable "azure_vpn_gateway_sku" {
   description = "Azure Gateway SKU"
   type        = string
-  default     = "VpnGw1AZ"
+  default     = "VpnGw1"
 }
 
 variable "azure_vpn_gateway_asn" {
@@ -71,7 +63,7 @@ variable "aws_vnet_prefix" {
 variable "aws_vm_subnet_prefix" {
   description = "AWS Test VM Subnet Prefix"
   type        = string
-  default     = "10.2.2.0/24"
+  default     = "10.2.100.0/24"
 }
 
 variable "aws_vpn_gateway_asn" {
@@ -131,3 +123,7 @@ variable ipsec_policy {
   }
 }
 
+variable "ssh_public_key" {
+  description = "SSH Public Key for Testing VMs"
+  type        = string
+}

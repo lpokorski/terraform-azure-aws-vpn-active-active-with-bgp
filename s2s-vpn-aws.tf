@@ -13,7 +13,7 @@ resource "aws_vpc" "aws-vpc" {
 
 # Needed for AWS Test VM Internet connectivity
 resource "aws_internet_gateway" "ig-test-aws-vm" {
-    vpc_id = aws_vpc.aws-vpc.id
+  vpc_id = aws_vpc.aws-vpc.id
 
   tags = {
     Name = "ig-test-aws-vm"
@@ -36,8 +36,8 @@ resource "aws_route_table" "vpn-route-table" {
 
 
 resource "aws_subnet" "vpn-subnet" {
-  vpc_id     = aws_vpc.aws-vpc.id
-  cidr_block = var.aws_vm_subnet_prefix
+  vpc_id                  = aws_vpc.aws-vpc.id
+  cidr_block              = var.aws_vm_subnet_prefix
   map_public_ip_on_launch = true
 
   tags = {
@@ -117,21 +117,21 @@ resource "aws_vpn_connection" "ToAzureInstance1" {
 
 output "ToAzureInstance0_Tunnel1_IP" {
   description = "To AzureInstance0 Tunnel 1 Outside IP address"
-  value = aws_vpn_connection.ToAzureInstance0.tunnel1_address
+  value       = aws_vpn_connection.ToAzureInstance0.tunnel1_address
 }
 
 output "ToAzureInstance0_Tunnel2_IP" {
   description = "To AzureInstance0 Tunnel 2 Outside IP address"
-  value = aws_vpn_connection.ToAzureInstance0.tunnel2_address
+  value       = aws_vpn_connection.ToAzureInstance0.tunnel2_address
 }
 
 
 output "ToAzureInstance1_Tunnel1_IP" {
   description = "To AzureInstance2 Tunnel 1 Outside IP address"
-  value = aws_vpn_connection.ToAzureInstance1.tunnel1_address
+  value       = aws_vpn_connection.ToAzureInstance1.tunnel1_address
 }
 
 output "ToAzureInstance1_Tunnel2_IP" {
   description = "To AzureInstance1 Tunnel 2 Outside IP address"
-  value = aws_vpn_connection.ToAzureInstance1.tunnel2_address
+  value       = aws_vpn_connection.ToAzureInstance1.tunnel2_address
 }

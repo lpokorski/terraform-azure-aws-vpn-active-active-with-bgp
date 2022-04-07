@@ -14,7 +14,7 @@ data "aws_ami" "app_ami" {
 
 resource "aws_network_interface" "nic-test-aws-vm" {
   subnet_id       = aws_subnet.vpn-subnet.id
-  security_groups = [aws_security_group.test-vpn-sg.id]
+  security_groups = [aws_security_group.vpn-test-sg.id]
   tags = {
     Name = "nic-test-aws-vm"
   }
@@ -23,8 +23,8 @@ resource "aws_network_interface" "nic-test-aws-vm" {
 
 ### NOTE - Adding a new security group resource to allow the terraform provisioner from laptop to connect to EC2 Instance via SSH.
 
-resource "aws_security_group" "test-vpn-sg" {
-  name        = "test-vpn-sg"
+resource "aws_security_group" "vpn-test-sg" {
+  name        = "vpn-test-sg"
   description = "Security Group For testing vpn connectivity"
   vpc_id      = aws_vpc.aws-vpc.id
 
@@ -61,7 +61,7 @@ resource "aws_security_group" "test-vpn-sg" {
 
 resource "aws_key_pair" "vpn-test-key-pair" {
   key_name   = "vpn-test-key-pair"
-  public_key = file("./ssh-keys/sshkey.pub")
+  public_key = var.ssh_public_key
   
   tags = {
     Name = "vpn-test-key-pair"
