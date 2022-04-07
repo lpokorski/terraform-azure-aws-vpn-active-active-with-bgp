@@ -85,7 +85,7 @@ Below table represents terraform input variables
 Below table represents terraform output variables.
 
 | Name | Description | 
-|------|:--------:|
+|------|--------|
 | AzureInstance0_IP | Azure Network Gateway Instance0 Public IP |
 | AzureInstance1_IP | Azure Network Gateway Instance1 Public IP |
 | ToAzureInstance0_Tunnel1_IP | AWS To AzureInstance0 Tunnel 1 Outside IP address |
