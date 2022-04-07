@@ -95,7 +95,27 @@ Below table represents terraform output variables.
 | My_Public_IP | Terraform deployment Public IP |
 
 
-## VPN Site-to-Site pre-shared keys
+## VPN Site-to-Site 
+### BGP APIPA Addresses
+AWS will use the first IP address of /30 inside APIPA CIDR and Azure will use the second IP Address.
+Terraform [cidrhost](https://www.terraform.io/language/functions/cidrhost) is used to calculate azure APIPA addresses from `bgp_apipa_cidr` variables.<br>
+Example:
+```hcl 
+  bgp_settings {
+    asn = var.azure_vpn_gateway_asn
+
+    peering_addresses {
+      ip_configuration_name = "vnetGatewayConfig-1"
+      apipa_addresses       = [cidrhost(var.bgp_apipa_cidr_1, 2), cidrhost(var.bgp_apipa_cidr_2, 2)]
+    }
+
+    peering_addresses {
+      ip_configuration_name = "vnetGatewayConfig-2"
+      apipa_addresses       = [cidrhost(var.bgp_apipa_cidr_3, 2), cidrhost(var.bgp_apipa_cidr_4, 2)]
+    }
+  }
+```
+### Pre-shared keys
 Terraform generates VPN connections pre-shared keys on the fly by using terraform [random_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) resources.
 
 ```hcl 
