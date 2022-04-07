@@ -83,6 +83,30 @@ Below table represents terraform input variables
 
 ## Outputs
 
+## VPN Site-to-Site pre-shared keys
+Terraform generates VPN connections pre-shared keys on the fly by using terraform [random_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) resources.
+
+```hcl 
+resource "random_password" "AWSTunnel1ToInstance0-PSK" {
+  length  = 16
+  special = false
+}
+
+resource "random_password" "AWSTunnel2ToInstance0-PSK" {
+  length  = 16
+  special = false
+}
+
+resource "random_password" "AWSTunnel1ToInstance1-PSK" {
+  length  = 16
+  special = false
+}
+
+resource "random_password" "AWSTunnel2ToInstance1-PSK" {
+  length  = 16
+  special = false
+}
+```
 ## Testing Virtual Machines
 Terraform scripts deploy Virtual Machines (one on Azure Site and one on AWS site) which could be used for connectivity testing over VPN connections.
 
