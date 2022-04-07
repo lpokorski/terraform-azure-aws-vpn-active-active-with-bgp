@@ -1,10 +1,4 @@
-# terraform-azure-aws-vpn-active-active-with-bgp
 
-<<<<<<< HEAD
-# Introduction 
-These terrafrom scripts deploy full mesh Site to Site IPSEC VPN between Azure and AWS Cloud.
-For detailed information refer to [Azure Documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-aws-bgp)
-=======
 ## Introduction 
 These terrafrom scripts deploy full mesh Site to Site IPSEC VPN with BGP between Azure and AWS Cloud.<br>
 For detailed information refer to [Azure Documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-aws-bgp). <br>
@@ -12,7 +6,7 @@ For detailed information refer to [Azure Documentation](https://docs.microsoft.c
 In addition terraform scripts deploy also Virtual Machines (one on Azure Site and one on AWS site) which could be used for connectivity testing over VPN connections.  
 
 <img src="https://docs.microsoft.com/en-us/azure/vpn-gateway/media/vpn-gateway-howto-aws-bgp/architecture.png?raw=true" width="800" height="600">
->>>>>>> dbd3a0f5a03aaeeff325149d6e5e3b5f4c284015
+
 
 ## Resources
 Note that this example creates resources in Azure and AWS cloud which can cost money. Run terraform destroy when you don't need these resources.
