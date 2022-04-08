@@ -1,6 +1,8 @@
 
+# --------------------------------------------------------------------------------------------------
+# CREATE VPC
+# --------------------------------------------------------------------------------------------------
 
-# Create a VPC
 resource "aws_vpc" "aws-vpc" {
 
   cidr_block = var.aws_vnet_prefix
@@ -10,8 +12,11 @@ resource "aws_vpc" "aws-vpc" {
   }
 }
 
+# --------------------------------------------------------------------------------------------------
+# CREATE IG - Needed for AWS Test VM Internet connectivity
+# --------------------------------------------------------------------------------------------------
 
-# Needed for AWS Test VM Internet connectivity
+
 resource "aws_internet_gateway" "ig-test-aws-vm" {
   vpc_id = aws_vpc.aws-vpc.id
 
@@ -20,6 +25,9 @@ resource "aws_internet_gateway" "ig-test-aws-vm" {
   }
 }
 
+# --------------------------------------------------------------------------------------------------
+# CREATE ROUTE TABLE
+# --------------------------------------------------------------------------------------------------
 
 resource "aws_route_table" "vpn-route-table" {
   vpc_id = aws_vpc.aws-vpc.id
@@ -34,6 +42,9 @@ resource "aws_route_table" "vpn-route-table" {
   }
 }
 
+# --------------------------------------------------------------------------------------------------
+# CREATE SUBNET FOR AWS TESTING VM
+# --------------------------------------------------------------------------------------------------
 
 resource "aws_subnet" "vpn-subnet" {
   vpc_id                  = aws_vpc.aws-vpc.id
@@ -50,10 +61,20 @@ resource "aws_route_table_association" "vpn-route-table-asoc" {
   route_table_id = aws_route_table.vpn-route-table.id
 }
 
+# --------------------------------------------------------------------------------------------------
+# PROPAGATE BGP ROUTES INTO ROUTE TABLE
+# --------------------------------------------------------------------------------------------------
+
+
 resource "aws_vpn_gateway_route_propagation" "vpc-route-propagation" {
   vpn_gateway_id = aws_vpn_gateway.vpn-gw.id
   route_table_id = aws_route_table.vpn-route-table.id
 }
+
+
+# --------------------------------------------------------------------------------------------------
+# CREATE AWS VPN GATEWAY
+# --------------------------------------------------------------------------------------------------
 
 resource "aws_vpn_gateway" "vpn-gw" {
   vpc_id = aws_vpc.aws-vpc.id
@@ -62,6 +83,10 @@ resource "aws_vpn_gateway" "vpn-gw" {
     Name = "vpn-gw"
   }
 }
+
+# --------------------------------------------------------------------------------------------------
+# CREATE AWS CUSTOMER GATEWAYS
+# --------------------------------------------------------------------------------------------------
 
 resource "aws_customer_gateway" "ToAzureInstance0" {
   bgp_asn    = var.azure_vpn_gateway_asn
@@ -81,6 +106,9 @@ resource "aws_customer_gateway" "ToAzureInstance1" {
   }
 }
 
+# --------------------------------------------------------------------------------------------------
+# CREATE AWS VPN CONENCTIONS
+# --------------------------------------------------------------------------------------------------
 
 resource "aws_vpn_connection" "ToAzureInstance0" {
   vpn_gateway_id        = aws_vpn_gateway.vpn-gw.id
@@ -90,9 +118,7 @@ resource "aws_vpn_connection" "ToAzureInstance0" {
   tunnel1_preshared_key = random_password.AWSTunnel1ToInstance0-PSK.result
   tunnel2_preshared_key = random_password.AWSTunnel2ToInstance0-PSK.result
   tunnel1_inside_cidr   = var.bgp_apipa_cidr_1
-  tunnel2_inside_cidr   = var.bgp_apipa_cidr_2
-  #tunnel1_ike_versions = "ikev2"
-  #tunnel2_ike_versions = "ikev2"  
+  tunnel2_inside_cidr   = var.bgp_apipa_cidr_2 
   tags = {
     Name = "ToAzureInstance0"
   }
@@ -106,14 +132,15 @@ resource "aws_vpn_connection" "ToAzureInstance1" {
   tunnel1_preshared_key = random_password.AWSTunnel1ToInstance1-PSK.result
   tunnel2_preshared_key = random_password.AWSTunnel2ToInstance1-PSK.result
   tunnel1_inside_cidr   = var.bgp_apipa_cidr_3
-  tunnel2_inside_cidr   = var.bgp_apipa_cidr_4
-  #tunnel1_ike_versions = "ikev2"
-  #tunnel2_ike_versions = "ikev2"  
+  tunnel2_inside_cidr   = var.bgp_apipa_cidr_4 
   tags = {
     Name = "ToAzureInstance1"
   }
 }
 
+# --------------------------------------------------------------------------------------------------
+# OUTPUTS
+# --------------------------------------------------------------------------------------------------
 
 output "ToAzureInstance0_Tunnel1_IP" {
   description = "To AzureInstance0 Tunnel 1 Outside IP address"

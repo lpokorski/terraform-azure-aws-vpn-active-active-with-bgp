@@ -85,6 +85,9 @@ resource "aws_instance" "vpn-test-aws-vm" {
   }
 }
 
+# --------------------------------------------------------------------------------------------------
+# OUTPUTS
+# --------------------------------------------------------------------------------------------------
 output "AWS_Test_VM_Public_IP" {
   description = "AWS Test VM Public IP"
   value = aws_instance.vpn-test-aws-vm.public_ip 

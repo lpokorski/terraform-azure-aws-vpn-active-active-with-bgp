@@ -1,3 +1,7 @@
+# --------------------------------------------------------------------------------------------------
+# CREASTE AZURE VNET
+# --------------------------------------------------------------------------------------------------
+
 resource "azurerm_virtual_network" "VNet1" {
   name                = "VNet1"
   location            = var.azure_location
@@ -161,7 +165,7 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel1ToInstance0" {
   use_policy_based_traffic_selectors = false
   dpd_timeout_seconds                = "45"
   express_route_gateway_bypass       = false
-  #connection_mode            = "ResponderOnly"
+  connection_mode            = "ResponderOnly"
 
   ipsec_policy {
     dh_group         = var.ipsec_policy.dh_group
@@ -190,7 +194,7 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel2ToInstance0" {
   use_policy_based_traffic_selectors = false
   dpd_timeout_seconds                = "45"
   express_route_gateway_bypass       = false
-  #connection_mode            = "ResponderOnly"
+  connection_mode            = "ResponderOnly"
 
   ipsec_policy {
     dh_group         = var.ipsec_policy.dh_group
@@ -219,7 +223,7 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel1ToInstance1" {
   use_policy_based_traffic_selectors = false
   dpd_timeout_seconds                = "45"
   express_route_gateway_bypass       = false
-  #connection_mode            = "ResponderOnly"
+  connection_mode            = "ResponderOnly"
 
   ipsec_policy {
     dh_group         = var.ipsec_policy.dh_group
@@ -249,7 +253,7 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel2ToInstance1" {
   use_policy_based_traffic_selectors = false
   dpd_timeout_seconds                = "45"
   express_route_gateway_bypass       = false
-  #connection_mode            = "ResponderOnly"
+  connection_mode            = "ResponderOnly"
 
   ipsec_policy {
     dh_group         = var.ipsec_policy.dh_group
@@ -263,7 +267,9 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel2ToInstance1" {
   }
 }
 
-
+# --------------------------------------------------------------------------------------------------
+# OUTPUTS
+# --------------------------------------------------------------------------------------------------
 output "AzureInstance0_IP" {
   description = "Azure Network Gateway Instance0 Public IP"
   value       = azurerm_public_ip.VNet1GWpip.ip_address

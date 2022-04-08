@@ -1,13 +1,8 @@
 
 # --------------------------------------------------------------------------------------------------
-# TEST VM Password
+# CREATE AWS TESTING VM
 # --------------------------------------------------------------------------------------------------
 
-resource "random_password" "admin_password" {
-  length  = 16
-  special = false
-  #override_special = "!#$%&*()_=+[]{}<>:?"
-}
 
 resource "azurerm_subnet" "vm-subnet" {
   name                 = "vm-subnet"
@@ -56,14 +51,10 @@ resource "azurerm_network_security_rule" "nsg-test-azure-vm-rule-2" {
 }
 
 
-
-
-
 resource "azurerm_network_interface_security_group_association" "vm-sg-asoc" {
   network_interface_id      = azurerm_network_interface.nic-test-azure-vm.id
   network_security_group_id = azurerm_network_security_group.nsg-test-azure-vm.id
 }
-
 
 
 resource "azurerm_public_ip" "pip-test-azure-vm" {
@@ -117,8 +108,9 @@ resource "azurerm_linux_virtual_machine" "vpn-test-azure-vm" {
     version   = "latest"
   }
 }
-
-
+# --------------------------------------------------------------------------------------------------
+# OUTPUTS
+# --------------------------------------------------------------------------------------------------
 
 output "Azure_Test_VM_Public_IP" {
   description = "Azure Test VM Public IP"
