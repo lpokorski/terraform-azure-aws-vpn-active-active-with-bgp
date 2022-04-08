@@ -9,7 +9,9 @@ data "aws_ami" "app_ami" {
   }
 }
 
-
+# --------------------------------------------------------------------------------------------------
+# CREATE AWS TESTING VM
+# --------------------------------------------------------------------------------------------------
 
 
 resource "aws_network_interface" "nic-test-aws-vm" {
@@ -20,8 +22,6 @@ resource "aws_network_interface" "nic-test-aws-vm" {
   }
 }
 
-
-### NOTE - Adding a new security group resource to allow the terraform provisioner from laptop to connect to EC2 Instance via SSH.
 
 resource "aws_security_group" "vpn-test-sg" {
   name        = "vpn-test-sg"
@@ -73,7 +73,6 @@ resource "aws_instance" "vpn-test-aws-vm" {
   ami           = data.aws_ami.app_ami.id
   instance_type = "t2.micro"
   key_name      = "vpn-test-key-pair"
-  #associate_public_ip_address = true
 
   network_interface {
     network_interface_id = aws_network_interface.nic-test-aws-vm.id

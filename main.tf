@@ -1,15 +1,18 @@
-# Configure the Azure provider
+# --------------------------------------------------------------------------------------------------
+# CONFIGURE TERRAFORM PROVIDERS
+# --------------------------------------------------------------------------------------------------
+
 terraform {
   required_version = ">= 0.14.9"
 
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=3.0.2"
+      version = "~>3.0.2"
     }
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 3.63"
     }
   }
 }
@@ -22,11 +25,13 @@ provider "azurerm" {
 }
 
 
-# Configure the AWS Provider
 provider "aws" {
   region = var.aws_region
 }
 
+# --------------------------------------------------------------------------------------------------
+# CREATE AZURE RESOURCE GROUP
+# --------------------------------------------------------------------------------------------------
 
 
 resource "azurerm_resource_group" "vpn-rg" {
@@ -43,35 +48,45 @@ resource "azurerm_resource_group" "vpn-rg" {
 resource "random_password" "AWSTunnel1ToInstance0-PSK" {
   length  = 16
   special = false
-  #override_special = "!#$%&*()_=+[]{}<>:?"
+
 }
 
 resource "random_password" "AWSTunnel2ToInstance0-PSK" {
   length  = 16
   special = false
-  #override_special = "!#$%&*()_=+[]{}<>:?"
+
 }
 
 
 resource "random_password" "AWSTunnel1ToInstance1-PSK" {
   length  = 16
   special = false
-  #override_special = "!#$%&*()_=+[]{}<>:?"
+
 }
 
 resource "random_password" "AWSTunnel2ToInstance1-PSK" {
   length  = 16
   special = false
-  #override_special = "!#$%&*()_=+[]{}<>:?"
 }
+
+
+# --------------------------------------------------------------------------------------------------
+# OBTAIN DEPLOYMENT IP
+# --------------------------------------------------------------------------------------------------
 
 
 data "http" "source_ip" {
   url = "https://ifconfig.me"
 }
 
+
+# --------------------------------------------------------------------------------------------------
+# OUTPUTS
+# --------------------------------------------------------------------------------------------------
+
+
 output "My_Public_IP" {
   description = "My Pubic IP"
-  value       = "${data.http.source_ip.body}/32"
+  value ="${data.http.source_ip.body}/32"
 }
 
