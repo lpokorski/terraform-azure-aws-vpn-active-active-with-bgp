@@ -165,7 +165,6 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel1ToInstance0" {
   use_policy_based_traffic_selectors = false
   dpd_timeout_seconds                = "45"
   express_route_gateway_bypass       = false
-  connection_mode            = "ResponderOnly"
 
   ipsec_policy {
     dh_group         = var.ipsec_policy.dh_group
@@ -194,7 +193,6 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel2ToInstance0" {
   use_policy_based_traffic_selectors = false
   dpd_timeout_seconds                = "45"
   express_route_gateway_bypass       = false
-  connection_mode            = "ResponderOnly"
 
   ipsec_policy {
     dh_group         = var.ipsec_policy.dh_group
@@ -223,7 +221,6 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel1ToInstance1" {
   use_policy_based_traffic_selectors = false
   dpd_timeout_seconds                = "45"
   express_route_gateway_bypass       = false
-  connection_mode            = "ResponderOnly"
 
   ipsec_policy {
     dh_group         = var.ipsec_policy.dh_group
@@ -253,7 +250,6 @@ resource "azurerm_virtual_network_gateway_connection" "AWSTunnel2ToInstance1" {
   use_policy_based_traffic_selectors = false
   dpd_timeout_seconds                = "45"
   express_route_gateway_bypass       = false
-  connection_mode            = "ResponderOnly"
 
   ipsec_policy {
     dh_group         = var.ipsec_policy.dh_group
